@@ -11,6 +11,7 @@ all:
 	make -C template
 	make -C template_sdl
 	make -C abbaye
+	make -C micropython
 
 install:
 	make -C kernel -k install
@@ -34,3 +35,4 @@ clean:
 	make -C template -k clean
 	make -C template_sdl -k clean
 	make -C abbaye -k clean
+	make -C micropython -k clean

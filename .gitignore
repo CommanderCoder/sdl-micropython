@@ -1,0 +1,5 @@
+*.o
+.deps/
+*.img
+*.map
+build/
