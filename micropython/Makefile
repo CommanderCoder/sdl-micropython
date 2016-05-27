@@ -111,6 +111,7 @@ OBJS = \
 	source/py/nlrxtensa.o \
 	source/sdlpi/mprun.o \
 	source/sdlpi/mphalport.o \
+	source/sdlpi/main.o \
 
 	# source/microbit/help.o \
 	# source/microbit/modlove.o \

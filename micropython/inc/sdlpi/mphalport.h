@@ -32,14 +32,42 @@ extern "C" {
 
 void mp_hal_init(void);
 
-void mp_hal_set_interrupt_char(int c);
-int mp_hal_stdin_rx_any(void);
-
 // provide these since we don't assume VT100 support
 void mp_hal_move_cursor_back(unsigned int pos);
 void mp_hal_erase_line_from_cursor(unsigned int n_chars);
 
 void mp_hal_display_string(const char*);
+
+
+#define txt_width  40
+#define txt_height 25
+
+extern int cur_x;
+extern int cur_y;
+extern int cursor_visible;
+
+
+struct _screen {
+    unsigned char c;
+    struct {
+        unsigned char r;
+        unsigned char g;
+        unsigned char b;
+    } fore;
+    struct {
+        unsigned char r;
+        unsigned char g;
+        unsigned char b;
+    } back;
+};
+
+
+
+extern struct _screen screen[txt_width * txt_height];
+
+void SDL_DrawChar(char c);
+void SDL_DrawString(const char *s);
+void SDL_DrawStringAt(int y, int x, const char *s);
 
 #ifdef __cplusplus
 }

@@ -36,6 +36,10 @@ LIBS_DEP += ../kernel/libkernel.a
 	$(CXX) $(CPPFLAGS) -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
 	@mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
 
+%.o: %.S
+	$(CC) $(CFLAGS) -std=c99 -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+	@mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+
 %.o: %.s
 	$(AS) $(ASFLAGS) -o $@ $<
 

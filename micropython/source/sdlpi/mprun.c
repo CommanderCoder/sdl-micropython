@@ -103,7 +103,7 @@ void mp_run(void) {
     mp_init();
     mp_hal_init();
     readline_init0();
-    microbit_init();
+    //   microbit_init();
 
     if (APPENDED_SCRIPT->header[0] == 'M' && APPENDED_SCRIPT->header[1] == 'P') {
         // run appended script
