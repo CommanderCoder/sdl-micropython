@@ -113,17 +113,17 @@ void mp_run(void) {
         mp_import_all(mp_import_name(MP_QSTR_microbit, mp_const_empty_tuple, MP_OBJ_NEW_SMALL_INT(0)));
     }
 
-    for (;;) {
-        if (pyexec_mode_kind == PYEXEC_MODE_RAW_REPL) {
-            if (pyexec_raw_repl() != 0) {
-                break;
-            }
-        } else {
-            if (pyexec_friendly_repl() != 0) {
-                break;
-            }
-        }
-    }
+    // for (;;) {
+    //     if (pyexec_mode_kind == PYEXEC_MODE_RAW_REPL) {
+    //         if (pyexec_raw_repl() != 0) {
+    //             break;
+    //         }
+    //     } else {
+    //         if (pyexec_friendly_repl() != 0) {
+    //             break;
+    //         }
+    //     }
+    // }
 
     mp_hal_stdout_tx_str("soft reboot\r\n");
 
@@ -132,6 +132,9 @@ void mp_run(void) {
 
     mp_deinit();
 }
+
+
+
 
 void gc_collect(void) {
     // WARNING: This gc_collect implementation doesn't try to get root

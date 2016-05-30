@@ -5,6 +5,7 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include "SDL_mixer.h"
+typedef unsigned int uint;
 
 extern unsigned int _binary_graphics_tiles_png_start;
 extern unsigned int _binary_graphics_tiles_png_end;

@@ -18,7 +18,7 @@ CPPFLAGS = $(CFLAGS) -fno-exceptions -fno-unwind-tables -fno-rtti
 
 all: libSDL2.a
 
-OBJS = $(shell find . -name *.c -print | sed -r 's/\.c+/\.o/g')
+OBJS = $(shell find . -name *.c -print | sed -E 's/\.c+/\.o/g')
 
 -include $(shell find $(DEPDIR) -name *.Po -print)
 

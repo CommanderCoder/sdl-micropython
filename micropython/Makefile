@@ -10,7 +10,8 @@ include ../SDL2_image/pkgconfig.mk
 include ../SDL2_mixer/pkgconfig.mk
 
 OBJS = \
-	source/lib/iters.o source/lib/readline.o \
+	source/lib/iters.o \
+	source/lib/readline.o \
 	source/lib/utils/pyexec.o \
 	source/py/argcheck.o \
 	source/py/asmarm.o \
@@ -109,9 +110,10 @@ OBJS = \
 	source/py/nlrx64.o \
 	source/py/nlrx86.o \
 	source/py/nlrxtensa.o \
-	source/sdlpi/mprun.o \
 	source/sdlpi/mphalport.o \
-	source/sdlpi/main.o \
+	source/sdlpi/a_main.o \
+	source/sdlpi/mprun.o \
+
 
 	# source/microbit/help.o \
 	# source/microbit/modlove.o \

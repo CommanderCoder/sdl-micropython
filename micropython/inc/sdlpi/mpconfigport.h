@@ -1,4 +1,6 @@
+#include <stddef.h>
 #include <stdint.h>
+#include <stdio.h>
 
 // options to control how Micro Python is built
 
@@ -19,7 +21,7 @@
 #define MICROPY_DEBUG_PRINTERS      (0)
 #define MICROPY_ENABLE_GC           (1)
 #define MICROPY_STACK_CHECK         (1)
-#define MICROPY_REPL_EVENT_DRIVEN   (0)
+#define MICROPY_REPL_EVENT_DRIVEN   (1)
 #define MICROPY_REPL_EMACS_KEYS     (1)
 #define MICROPY_REPL_AUTO_INDENT    (1)
 #define MICROPY_HELPER_REPL         (1)
@@ -50,7 +52,7 @@
 #define MICROPY_PY_IO               (0)
 #define MICROPY_PY_STRUCT           (1)
 #define MICROPY_PY_SYS              (1)
-#define MICROPY_PY_SYS_PLATFORM     "microbit"
+#define MICROPY_PY_SYS_PLATFORM     "raspberrypi"
 #define MICROPY_PY_SYS_MODULES      (0)
 #define MICROPY_MODULE_BUILTIN_INIT (1)
 #define MICROPY_MODULE_FROZEN       (0)
@@ -70,8 +72,8 @@
 
 #define UINT_FMT "%u"
 #define INT_FMT "%d"
-typedef int mp_int_t; // must be pointer size
-typedef unsigned mp_uint_t; // must be pointer size
+typedef intptr_t mp_int_t; // must be pointer size
+typedef uintptr_t mp_uint_t; // must be pointer size
 
 typedef void *machine_ptr_t; // must be of pointer size
 typedef const void *machine_const_ptr_t; // must be of pointer size
@@ -116,6 +118,7 @@ extern const struct _mp_obj_module_t random_module;
 #define MICROPY_PORT_ROOT_POINTERS \
     const char *readline_hist[8]; \
     mp_obj_t keyboard_interrupt_obj; \
+    vstr_t *repl_line; \
     void *async_data[2]; \
     void *async_music_data; \
 
@@ -123,8 +126,8 @@ extern const struct _mp_obj_module_t random_module;
 #include <alloca.h>
 
 #define MICROPY_HAL_H "mphal.h"
-#define MICROPY_HW_BOARD_NAME "micro:bit"
-#define MICROPY_HW_MCU_NAME "nRF51822"
+#define MICROPY_HW_BOARD_NAME "raspberrypi"
+#define MICROPY_HW_MCU_NAME "ARM1176JZF-S"
 
 // Toolchain seems to be missing M_PI
 #ifndef M_PI

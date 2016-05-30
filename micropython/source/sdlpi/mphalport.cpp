@@ -40,7 +40,7 @@ int cur_y;
 int cursor_visible;
 struct _screen screen[txt_width * txt_height];
 
-void SDL_DrawString(const char *s) {
+void SDL_DrawStringA(const char *s) {
     char c;
 
     while (*s) {
@@ -89,13 +89,13 @@ void SDL_DrawString(const char *s) {
     cursor_visible = 1;
 }
 
-void SDL_DrawStringAt(int y, int x, const char *s) {
+void SDL_DrawStringAtA(int y, int x, const char *s) {
     cur_x = x % txt_width;
     cur_y = y % txt_height;
-    SDL_DrawString(s);
+    SDL_DrawStringA(s);
 }
 
-void SDL_DrawChar(char c) {
+void SDL_DrawCharA(char c) {
     if (c == '\r') {
         cur_x = 0;
     }
@@ -139,14 +139,21 @@ void SDL_DrawChar(char c) {
     cursor_visible = 1;
 }
 
-void SDL_DrawCharAt(int y, int x, char c) {
+void SDL_DrawCharAtA(int y, int x, char c) {
     cur_x = x % txt_width;
     cur_y = y % txt_height;
-    SDL_DrawChar(c);
+    SDL_DrawCharA(c);
 }
 
 
 unsigned char sdl_char = 0;
+
+void SDL_SetChar(char a)
+{
+    sdl_char=a;
+}
+    
+#if !MACOS_SDLMP
 
 // Receive single character
 int mp_hal_stdin_rx_chr(void) {
@@ -155,16 +162,18 @@ int mp_hal_stdin_rx_chr(void) {
     return c;
 }
 
+#endif
+    
 // Send string of given length
 void mp_hal_stdout_tx_strn(const char *str, size_t len) {
     for (; len > 0; --len) {
-        SDL_DrawChar(*str++);
+        SDL_DrawCharA(*str++);
     }
 }
 
 // Send string of given length
 void mp_hal_stdout_tx_char(const char c) {
-   SDL_DrawChar(c);
+   SDL_DrawCharA(c);
 }
 
 void mp_hal_stdout_tx_strn_cooked(const char *str, size_t len) {
@@ -175,6 +184,7 @@ void mp_hal_stdout_tx_strn_cooked(const char *str, size_t len) {
         mp_hal_stdout_tx_char(*str++);
     }
 }
+    
 
 void mp_hal_stdout_tx_str(const char *str) {
     mp_hal_stdout_tx_strn(str, strlen(str));

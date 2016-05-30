@@ -69,6 +69,8 @@ void SDL_DrawChar(char c);
 void SDL_DrawString(const char *s);
 void SDL_DrawStringAt(int y, int x, const char *s);
 
+void SDL_SetChar(char a);
+
 #ifdef __cplusplus
 }
 #endif
