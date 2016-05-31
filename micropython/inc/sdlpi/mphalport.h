@@ -65,9 +65,9 @@ struct _screen {
 
 extern struct _screen screen[txt_width * txt_height];
 
-void SDL_DrawChar(char c);
-void SDL_DrawString(const char *s);
-void SDL_DrawStringAt(int y, int x, const char *s);
+void SDL_DrawCharA(char c);
+void SDL_DrawStringA(const char *s);
+void SDL_DrawStringAtA(int y, int x, const char *s);
 
 void SDL_SetChar(char a);
 

@@ -48,6 +48,14 @@ void SDL_DrawStringA(const char *s) {
         if (c == '\r') {
             cur_x = 0;
         }
+        else if (c == '\b') {
+            if (cur_x > 0)
+                cur_x--;
+            else if (cur_y > 0) {
+                cur_y--;
+                cur_x = txt_width - 1;
+            }
+        }
         else if (c == '\n') {
             cur_y++;
             if (cur_y >= txt_height) {
@@ -98,6 +106,14 @@ void SDL_DrawStringAtA(int y, int x, const char *s) {
 void SDL_DrawCharA(char c) {
     if (c == '\r') {
         cur_x = 0;
+    }
+    else if (c == '\b') {
+        if (cur_x > 0)
+            cur_x--;
+        else if (cur_y > 0) {
+            cur_y--;
+            cur_x = txt_width - 1;
+        }
     }
     else if (c == '\n') {
         cur_y++;
@@ -152,8 +168,6 @@ void SDL_SetChar(char a)
 {
     sdl_char=a;
 }
-    
-#if !MACOS_SDLMP
 
 // Receive single character
 int mp_hal_stdin_rx_chr(void) {
@@ -161,8 +175,6 @@ int mp_hal_stdin_rx_chr(void) {
     sdl_char = 0;
     return c;
 }
-
-#endif
     
 // Send string of given length
 void mp_hal_stdout_tx_strn(const char *str, size_t len) {

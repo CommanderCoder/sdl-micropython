@@ -109,7 +109,6 @@
 		C58BD0561CFB073500D6681A /* warning.c in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF831CFB073500D6681A /* warning.c */; };
 		C58BD0581CFB073500D6681A /* a_main.c in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF861CFB073500D6681A /* a_main.c */; };
 		C58BD05C1CFB073500D6681A /* mphalport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF8A1CFB073500D6681A /* mphalport.cpp */; };
-		C58BD05E1CFB073500D6681A /* mprun.c in Sources */ = {isa = PBXBuildFile; fileRef = C58BCF8C1CFB073500D6681A /* mprun.c */; };
 		C58BD0A11CFB129000D6681A /* libSDL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C58BCEB01CFB06EC00D6681A /* libSDL2.a */; };
 		C58BD0A51CFB12BF00D6681A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C58BD0A41CFB12BF00D6681A /* Cocoa.framework */; };
 		C58BD0A71CFB12D300D6681A /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C58BD0A61CFB12D300D6681A /* IOKit.framework */; };
@@ -168,6 +167,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C559E42B1CFE22780005089E /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = main.c; path = "../../../old_raspberry-pi-sdl/SDLOS/src/main.c"; sourceTree = "<group>"; };
 		C58BCE9C1CFB067F00D6681A /* micropython-sdl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "micropython-sdl"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58BCEA61CFB06EC00D6681A /* SDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL.xcodeproj; path = "../SDL2-2.0.4/Xcode/SDL/SDL.xcodeproj"; sourceTree = "<group>"; };
 		C58BCEB61CFB072400D6681A /* qstrdefs.preprocessed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qstrdefs.preprocessed.h; sourceTree = "<group>"; };
@@ -273,7 +273,6 @@
 		C58BCF831CFB073500D6681A /* warning.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = warning.c; sourceTree = "<group>"; };
 		C58BCF861CFB073500D6681A /* a_main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = a_main.c; sourceTree = "<group>"; };
 		C58BCF8A1CFB073500D6681A /* mphalport.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mphalport.cpp; sourceTree = "<group>"; };
-		C58BCF8C1CFB073500D6681A /* mprun.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mprun.c; sourceTree = "<group>"; };
 		C58BD0621CFB074600D6681A /* mpversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mpversion.h; sourceTree = "<group>"; };
 		C58BD0631CFB074600D6681A /* qstrdefs.generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qstrdefs.generated.h; sourceTree = "<group>"; };
 		C58BD0651CFB074600D6681A /* iters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iters.h; sourceTree = "<group>"; };
@@ -384,6 +383,7 @@
 				C58BCEA61CFB06EC00D6681A /* SDL.xcodeproj */,
 				C58BCE9E1CFB067F00D6681A /* micropython-sdl */,
 				C58BCE9D1CFB067F00D6681A /* Products */,
+				C559E42B1CFE22780005089E /* main.c */,
 			);
 			sourceTree = "<group>";
 		};
@@ -400,10 +400,10 @@
 			children = (
 				C58BD0B41CFB2C3C00D6681A /* mac_platform.c */,
 				C58BD0B51CFB2C3C00D6681A /* mac_platform.h */,
+				C58BD0C21CFB2D4A00D6681A /* mac_wiring.h */,
 				C58BD0C11CFB2D4A00D6681A /* mac_wiring.c */,
 				C58BD0C61CFB2E2400D6681A /* SDL_config_macos.c */,
 				C58BD0C71CFB2E2400D6681A /* SDL_config_macos.h */,
-				C58BD0C21CFB2D4A00D6681A /* mac_wiring.h */,
 			);
 			path = "micropython-sdl";
 			sourceTree = "<group>";
@@ -566,7 +566,6 @@
 			children = (
 				C58BCF861CFB073500D6681A /* a_main.c */,
 				C58BCF8A1CFB073500D6681A /* mphalport.cpp */,
-				C58BCF8C1CFB073500D6681A /* mprun.c */,
 			);
 			path = sdlpi;
 			sourceTree = "<group>";
@@ -831,7 +830,6 @@
 				C58BCFD01CFB073500D6681A /* modmath.c in Sources */,
 				C58BD0041CFB073500D6681A /* objfun.c in Sources */,
 				C58BCFCA1CFB073500D6681A /* modcollections.c in Sources */,
-				C58BD05E1CFB073500D6681A /* mprun.c in Sources */,
 				C58BCFA01CFB073500D6681A /* bc.c in Sources */,
 				C58BCFF21CFB073500D6681A /* objboundmeth.c in Sources */,
 				C58BCF8E1CFB073500D6681A /* iters.c in Sources */,
@@ -965,6 +963,7 @@
 		C58BCEA41CFB067F00D6681A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MACOS_SDLMP=1",
 					"DEBUG=1",
@@ -982,6 +981,8 @@
 		C58BCEA51CFB067F00D6681A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = "MACOS_SDLMP=1";
 				HEADER_SEARCH_PATHS = (
 					../../micropython/inc,

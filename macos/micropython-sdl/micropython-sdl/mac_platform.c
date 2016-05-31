@@ -48,38 +48,3 @@ int compare_timer(struct timer_wait * tw) {
     
     return 0;
 }
-
-
-#if MACOS_SDLMP
-
-int mp_hal_stdin_rx_chr(void) {
-    unsigned char c;
-#if MICROPY_PY_OS_DUPTERM
-    if (MP_STATE_PORT(term_obj) != MP_OBJ_NULL) {
-        int c;
-        do {
-            c = call_dupterm_read();
-        } while (c == -2);
-        if (c == -1) {
-            goto main_term;
-        }
-        if (c == '\n') {
-            c = '\r';
-        }
-        return c;
-    } else {
-    main_term:;
-#endif
-        int ret = read(0, &c, 1);
-        if (ret == 0) {
-            c = 4; // EOF, ctrl-D
-        } else if (c == '\n') {
-            c = '\r';
-        }
-        return c;
-#if MICROPY_PY_OS_DUPTERM
-    }
-#endif
-}
-
-#endif
