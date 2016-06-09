@@ -26,6 +26,10 @@
 #ifndef __MICROPY_INCLUDED_MICROBIT_MPHALPORT_H__
 #define __MICROPY_INCLUDED_MICROBIT_MPHALPORT_H__
 
+
+#include <SDL.h>
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -39,29 +43,33 @@ void mp_hal_erase_line_from_cursor(unsigned int n_chars);
 void mp_hal_display_string(const char*);
 
 
-#define txt_width  40
-#define txt_height 25
+#define txt_width  64
+#define txt_height 48
 
 extern int cur_x;
 extern int cur_y;
 extern int cursor_visible;
 
-
-struct _screen {
-    unsigned char c;
-    struct {
-        unsigned char r;
-        unsigned char g;
-        unsigned char b;
-    } fore;
-    struct {
-        unsigned char r;
-        unsigned char g;
-        unsigned char b;
-    } back;
+struct _colour {
+    unsigned char r;
+    unsigned char g;
+    unsigned char b;
 };
 
 
+struct _screen {
+    unsigned char c;
+    struct _colour fore;
+    struct _colour back;
+};
+
+    extern struct _colour cursor;
+    extern struct _colour mainback;
+    extern struct _colour linefore;
+    extern struct _colour lineback;
+    
+    extern SDL_Renderer *renderer;
+    
 
 extern struct _screen screen[txt_width * txt_height];
 
@@ -70,7 +78,7 @@ void SDL_DrawStringA(const char *s);
 void SDL_DrawStringAtA(int y, int x, const char *s);
 
 void SDL_SetChar(char a);
-
+    
 #ifdef __cplusplus
 }
 #endif

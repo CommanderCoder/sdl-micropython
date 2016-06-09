@@ -65,14 +65,26 @@
 
 // type definitions for the specific machine
 
-#define BYTES_PER_WORD (4)
+//#define BYTES_PER_WORD (4)
+#define BYTES_PER_WORD sizeof(mp_int_t)
 
 #define MICROPY_MAKE_POINTER_CALLABLE(p) ((void*)((mp_uint_t)(p) | 1))
 
 #define UINT_FMT "%u"
 #define INT_FMT "%d"
-typedef intptr_t mp_int_t; // must be pointer size
-typedef uintptr_t mp_uint_t; // must be pointer size
+
+// assume that if we already defined the obj repr then we also defined types
+//#ifndef MICROPY_OBJ_REPR
+#ifdef __LP64__
+typedef long mp_int_t; // must be pointer size
+typedef unsigned long mp_uint_t; // must be pointer size
+#else
+// These are definitions for machines where sizeof(int) == sizeof(void*),
+// regardless of actual size.
+typedef int mp_int_t; // must be pointer size
+typedef unsigned int mp_uint_t; // must be pointer size
+#endif
+//#endif
 
 typedef void *machine_ptr_t; // must be of pointer size
 typedef const void *machine_const_ptr_t; // must be of pointer size
@@ -117,9 +129,11 @@ extern const struct _mp_obj_module_t random_module;
 #define MICROPY_PORT_ROOT_POINTERS \
     const char *readline_hist[8]; \
     mp_obj_t keyboard_interrupt_obj; \
+    mp_obj_t mp_kbd_exception; \
     vstr_t *repl_line; \
     void *async_data[2]; \
     void *async_music_data; \
+
 
 // We need to provide a declaration/definition of alloca()
 #include <alloca.h>

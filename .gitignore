@@ -3,3 +3,4 @@
 *.img
 *.map
 build/
+qstrdefs.generated.h

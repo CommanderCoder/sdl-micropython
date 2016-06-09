@@ -205,12 +205,12 @@ void SDL_InitConsole(int w, int h) {
 
     for (int i = 0; i < txt_width * txt_height; i++) {
         screen[i].c = ' ';
-        screen[i].fore.r = 255;
-        screen[i].fore.g = 255;
-        screen[i].fore.b = 255;
-        screen[i].back.r = 98;
-        screen[i].back.g = 0;
-        screen[i].back.b = 32;
+        screen[i].fore.r = linefore.r;
+        screen[i].fore.g = linefore.g;
+        screen[i].fore.b = linefore.b;
+        screen[i].back.r = lineback.r;
+        screen[i].back.g = lineback.g;
+        screen[i].back.b = lineback.b;
     }
 
     cur_x = 0;
@@ -247,40 +247,16 @@ void SDL_RenderConsole(SDL_Renderer *renderer) {
         rect.y = crect.y + cur_y * CHAR_H;
         rect.w = CHAR_W;
         rect.h = CHAR_H;
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        SDL_SetRenderDrawColor(renderer, cursor.r, cursor.g, cursor.b, 255);
         SDL_RenderFillRect(renderer, &rect);
     }
 }
 
 
-SDL_Renderer *renderer;
 SDL_Event event;
-struct timer_wait tw;
-int led_status = LOW;
 
-void flash_cursor()
-{
-    
-    if (compare_timer(&tw)) {
-        led_status = led_status == LOW ? HIGH : LOW;
-        digitalWrite(16, led_status);
-        cursor_visible = cursor_visible ? 0 : 1;
-    }
-}
-void render()
-{
-    
-    SDL_SetRenderDrawColor(renderer, 213, 41, 82, 255);
-    SDL_RenderClear(renderer);
-    
-    SDL_RenderConsole(renderer);
-    
-    SDL_RenderPresent(renderer);
-}
 
-void mp_keyboard_interrupt(void) {
-   // MP_STATE_VM(mp_pending_exception) = MP_STATE_PORT(mp_kbd_exception);
-}
+
 
 static char *stack_top;
 
@@ -336,34 +312,32 @@ int main() {
 
 #if !(MACOS_SDLMP)
     // Sets a specific screen resolution
-    SDL_CreateWindowAndRenderer(32 + 320 + 32, 32 + 200 + 32, SDL_WINDOW_FULLSCREEN, &screen, &renderer);
+    SDL_CreateWindowAndRenderer(32 + txt_width*CHAR_W + 32, 32 + txt_height*CHAR_H + 32, SDL_WINDOW_FULLSCREEN, &screen, &renderer);
 #else
     // NOTE: It shouldn't be possible to change the window and render in this OS
-    SDL_CreateWindowAndRenderer(32 + 320 + 32, 32 + 200 + 32, SDL_WINDOW_RESIZABLE, &screen, &renderer);
+    SDL_CreateWindowAndRenderer(32 + txt_width*CHAR_W + 32, 32 + txt_height*CHAR_H + 32, SDL_WINDOW_RESIZABLE, &screen, &renderer);
 #endif
     
     SDL_GetWindowSize(screen, &w, &h);
     SDL_InitConsole(w, h);
 
+#if !(MACOS_SDLMP)
     SDL_DrawStringAtA(1, (txt_width - 22) / 2, "**** RASPBERRY-PI ****");
     SDL_DrawStringAtA(3, (txt_width - 30) / 2, "BARE-METAL SDL SYSTEM TEMPLATE\r\n");
-
-    pinMode(16, OUTPUT);
-    register_timer(&tw, 250000);
-
-    SDL_DrawStringA("\r\nREADY\r\n");
-
+#else
+#endif
+    
 
     int stack_dummy;
     stack_top = (char*)&stack_dummy;
 
     
     mp_stack_ctrl_init();
-    mp_stack_set_limit(1800); // stack is 2k
+    mp_stack_set_limit(1800*2); // stack is 2k
 
 
     // allocate the heap statically in the bss
-    static uint32_t heap[9820 / 4];
+    static uint32_t heap[9820*2 / 4];
     gc_init(heap, (uint8_t*)heap + sizeof(heap));
 
     
@@ -487,7 +461,7 @@ int main() {
 
         // now sort out display
         flash_cursor();
-        render();
+        render(false);
 
     }
 

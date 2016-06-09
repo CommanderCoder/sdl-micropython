@@ -30,71 +30,85 @@ extern "C" {
 
 #include "py/mpstate.h"
 #include "py/mphal.h"
-#include <SDL.h>
+#include "py/runtime.h"
+#include "py/repl.h"
+
+    
+#include "../kernel/platform.h"
+#include "../kernel/wiring.h"
 
 
-
+    struct _colour cursor = {255,255,255}; //{98,0,32}
+    struct _colour mainback = {0,0,0}; //{213,41,82}
+    struct _colour linefore = {0,255,0}; //{23,98,35};
+    struct _colour lineback = {24,24,24}; //{30,41,51};
 
 int cur_x;
 int cur_y;
 int cursor_visible;
 struct _screen screen[txt_width * txt_height];
+    struct timer_wait tw;
+    
+    extern void SDL_RenderConsole(SDL_Renderer *renderer);
 
+    int led_status = LOW;
+    SDL_Renderer *renderer;
+    int render_count = 0;
+    
+    void flash_cursor()
+    {
+        
+        if (compare_timer(&tw)) {
+            led_status = led_status == LOW ? HIGH : LOW;
+            digitalWrite(16, led_status);
+            cursor_visible = cursor_visible ? 0 : 1;
+        }
+    }
+    void mp_keyboard_interrupt(void) {
+        MP_STATE_VM(mp_pending_exception) = MP_STATE_PORT(mp_kbd_exception);
+    }
+    void render(bool internal = false)
+    {
+        render_count++;
+        
+        // after 1000 charaters - render
+        if (render_count < 1000)
+            return;
+        
+        SDL_SetRenderDrawColor(renderer, mainback.r, mainback.g, mainback.b, 255);
+        SDL_RenderClear(renderer);
+        
+        SDL_RenderConsole(renderer);
+        
+        SDL_RenderPresent(renderer);
+        
+
+        if (internal)
+        {
+        SDL_Event event;
+
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_KEYDOWN) {
+              SDL_Keymod mod = SDL_GetModState();
+              if ( ((mod & (KMOD_LCTRL | KMOD_RCTRL)) != 0) &&
+                  event.key.keysym.scancode == SDL_SCANCODE_C) {
+                                    mp_keyboard_interrupt();
+              }
+            }
+        }
+        }
+        render_count = 0;
+    }
+    
 void SDL_DrawStringA(const char *s) {
     char c;
 
     while (*s) {
         c = *s++;
-        if (c == '\r') {
-            cur_x = 0;
-        }
-        else if (c == '\b') {
-            if (cur_x > 0)
-                cur_x--;
-            else if (cur_y > 0) {
-                cur_y--;
-                cur_x = txt_width - 1;
-            }
-        }
-        else if (c == '\n') {
-            cur_y++;
-            if (cur_y >= txt_height) {
-                memcpy(&screen[0], &screen[txt_width], sizeof(screen) - sizeof(struct _screen) * txt_width);
-                for (int i = txt_width * (txt_height - 1); i < txt_width * txt_height; i++) {
-                    screen[i].c = ' ';
-                    screen[i].fore.r = 23;
-                    screen[i].fore.g = 98;
-                    screen[i].fore.b = 35;
-                    screen[i].back.r = 30;
-                    screen[i].back.g = 41;
-                    screen[i].back.b = 51;
-                }
-                cur_y--;
-            }
-        }
-        else {
-            screen[cur_y * txt_width + cur_x].c = c;
-            cur_x++;
-            if (cur_x >= txt_width) {
-                cur_x = 0;
-                cur_y++;
-                if (cur_y >= txt_height) {
-                    memcpy(&screen[0], &screen[txt_width], sizeof(screen) - sizeof(struct _screen) * txt_width);
-                    for (int i = txt_width * (txt_height - 1); i < txt_width * txt_height; i++) {
-                        screen[i].c = ' ';
-                        screen[i].fore.r = 23;
-                        screen[i].fore.g = 98;
-                        screen[i].fore.b = 35;
-                        screen[i].back.r = 30;
-                        screen[i].back.g = 41;
-                        screen[i].back.b = 51;
-                    }
-                    cur_y--;
-                }
-            }
-        }
+        SDL_DrawCharA(c);
     }
     cursor_visible = 1;
+
 }
 
 void SDL_DrawStringAtA(int y, int x, const char *s) {
@@ -121,12 +135,12 @@ void SDL_DrawCharA(char c) {
             memcpy(&screen[0], &screen[txt_width], sizeof(screen) - sizeof(struct _screen) * txt_width);
             for (int i = txt_width * (txt_height - 1); i < txt_width * txt_height; i++) {
                 screen[i].c = ' ';
-                screen[i].fore.r = 23;
-                screen[i].fore.g = 98;
-                screen[i].fore.b = 35;
-                screen[i].back.r = 30;
-                screen[i].back.g = 41;
-                screen[i].back.b = 51;
+                screen[i].fore.r = linefore.r;
+                screen[i].fore.g = linefore.g;
+                screen[i].fore.b = linefore.b;
+                screen[i].back.r = lineback.r;
+                screen[i].back.g = lineback.g;
+                screen[i].back.b = lineback.b;
             }
             cur_y--;
         }
@@ -141,18 +155,21 @@ void SDL_DrawCharA(char c) {
                 memcpy(&screen[0], &screen[txt_width], sizeof(screen) - sizeof(struct _screen) * txt_width);
                 for (int i = txt_width * (txt_height - 1); i < txt_width * txt_height; i++) {
                     screen[i].c = ' ';
-                    screen[i].fore.r = 23;
-                    screen[i].fore.g = 98;
-                    screen[i].fore.b = 35;
-                    screen[i].back.r = 30;
-                    screen[i].back.g = 41;
-                    screen[i].back.b = 51;
+                    screen[i].fore.r = linefore.r;
+                    screen[i].fore.g = linefore.g;
+                    screen[i].fore.b = linefore.b;
+                    screen[i].back.r = lineback.r;
+                    screen[i].back.g = lineback.g;
+                    screen[i].back.b = lineback.b;
                 }
                 cur_y--;
             }
         }
     }
     cursor_visible = 1;
+    
+    //--
+    render(true);
 }
 
 void SDL_DrawCharAtA(int y, int x, char c) {
@@ -233,7 +250,10 @@ void mp_hal_display_string(const char *str) {
 
 void mp_hal_init()
 {
+    MP_STATE_PORT(mp_kbd_exception) = mp_obj_new_exception(&mp_type_KeyboardInterrupt);
 
+    pinMode(16, OUTPUT);
+    register_timer(&tw, 250000);
 }
 
 }

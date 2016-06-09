@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C566829D1D01B75500470B26 /* font7.c in Sources */ = {isa = PBXBuildFile; fileRef = C566829C1D01B75500470B26 /* font7.c */; };
 		C58BCF8E1CFB073500D6681A /* iters.c in Sources */ = {isa = PBXBuildFile; fileRef = C58BCEB91CFB073500D6681A /* iters.c */; };
 		C58BCF911CFB073500D6681A /* readline.c in Sources */ = {isa = PBXBuildFile; fileRef = C58BCEBC1CFB073500D6681A /* readline.c */; };
 		C58BCF941CFB073500D6681A /* pyexec.c in Sources */ = {isa = PBXBuildFile; fileRef = C58BCEC01CFB073500D6681A /* pyexec.c */; };
@@ -168,6 +169,7 @@
 
 /* Begin PBXFileReference section */
 		C559E42B1CFE22780005089E /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = main.c; path = "../../../old_raspberry-pi-sdl/SDLOS/src/main.c"; sourceTree = "<group>"; };
+		C566829C1D01B75500470B26 /* font7.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = font7.c; sourceTree = "<group>"; };
 		C58BCE9C1CFB067F00D6681A /* micropython-sdl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "micropython-sdl"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58BCEA61CFB06EC00D6681A /* SDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL.xcodeproj; path = "../SDL2-2.0.4/Xcode/SDL/SDL.xcodeproj"; sourceTree = "<group>"; };
 		C58BCEB61CFB072400D6681A /* qstrdefs.preprocessed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qstrdefs.preprocessed.h; sourceTree = "<group>"; };
@@ -566,6 +568,7 @@
 			children = (
 				C58BCF861CFB073500D6681A /* a_main.c */,
 				C58BCF8A1CFB073500D6681A /* mphalport.cpp */,
+				C566829C1D01B75500470B26 /* font7.c */,
 			);
 			path = sdlpi;
 			sourceTree = "<group>";
@@ -812,6 +815,7 @@
 				C58BCFDE1CFB073500D6681A /* nativeglue.c in Sources */,
 				C58BCF981CFB073500D6681A /* asmarm.c in Sources */,
 				C58BD00C1CFB073500D6681A /* objint_longlong.c in Sources */,
+				C566829D1D01B75500470B26 /* font7.c in Sources */,
 				C58BD0541CFB073500D6681A /* vstr.c in Sources */,
 				C58BCFE31CFB073500D6681A /* nlrthumb.S in Sources */,
 				C58BD0301CFB073500D6681A /* objtuple.c in Sources */,
