@@ -122,6 +122,12 @@
 		C58BD0B61CFB2C3C00D6681A /* mac_platform.c in Sources */ = {isa = PBXBuildFile; fileRef = C58BD0B41CFB2C3C00D6681A /* mac_platform.c */; };
 		C58BD0C31CFB2D4A00D6681A /* mac_wiring.c in Sources */ = {isa = PBXBuildFile; fileRef = C58BD0C11CFB2D4A00D6681A /* mac_wiring.c */; };
 		C58BD0C81CFB2E2400D6681A /* SDL_config_macos.c in Sources */ = {isa = PBXBuildFile; fileRef = C58BD0C61CFB2E2400D6681A /* SDL_config_macos.c */; };
+		C5F464D91D0A256C007DC3B6 /* help.c in Sources */ = {isa = PBXBuildFile; fileRef = C5F464D71D0A24D9007DC3B6 /* help.c */; };
+		C5F464DB1D0A27EF007DC3B6 /* modthis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5F464DA1D0A27EF007DC3B6 /* modthis.cpp */; };
+		C5F464DD1D0A2940007DC3B6 /* modsdlpi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5F464DC1D0A2940007DC3B6 /* modsdlpi.cpp */; };
+		C5F464DF1D0A2946007DC3B6 /* modrandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5F464DE1D0A2946007DC3B6 /* modrandom.cpp */; };
+		C5F464E21D0A2BF1007DC3B6 /* RaspberryPi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5F464E11D0A2BF1007DC3B6 /* RaspberryPi.cpp */; };
+		C5F464E71D0A354A007DC3B6 /* raspi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5F464E61D0A354A007DC3B6 /* raspi.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,7 +174,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C559E42B1CFE22780005089E /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = main.c; path = "../../../old_raspberry-pi-sdl/SDLOS/src/main.c"; sourceTree = "<group>"; };
 		C566829C1D01B75500470B26 /* font7.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = font7.c; sourceTree = "<group>"; };
 		C58BCE9C1CFB067F00D6681A /* micropython-sdl */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "micropython-sdl"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C58BCEA61CFB06EC00D6681A /* SDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDL.xcodeproj; path = "../SDL2-2.0.4/Xcode/SDL/SDL.xcodeproj"; sourceTree = "<group>"; };
@@ -346,6 +351,17 @@
 		C58BD0C21CFB2D4A00D6681A /* mac_wiring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mac_wiring.h; sourceTree = "<group>"; };
 		C58BD0C61CFB2E2400D6681A /* SDL_config_macos.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SDL_config_macos.c; sourceTree = "<group>"; };
 		C58BD0C71CFB2E2400D6681A /* SDL_config_macos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDL_config_macos.h; sourceTree = "<group>"; };
+		C5F464C51D0A1ED7007DC3B6 /* mprun.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mprun.c; path = raspberrypi/mprun.c; sourceTree = "<group>"; };
+		C5F464C61D0A1ED7007DC3B6 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = raspberrypi/main.cpp; sourceTree = "<group>"; };
+		C5F464D41D0A220A007DC3B6 /* modsdlpi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = modsdlpi.h; sourceTree = "<group>"; };
+		C5F464D61D0A235C007DC3B6 /* RaspberryPi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RaspberryPi.h; path = raspberrypi/RaspberryPi.h; sourceTree = "<group>"; };
+		C5F464D71D0A24D9007DC3B6 /* help.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = help.c; sourceTree = "<group>"; };
+		C5F464DA1D0A27EF007DC3B6 /* modthis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = modthis.cpp; sourceTree = "<group>"; };
+		C5F464DC1D0A2940007DC3B6 /* modsdlpi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = modsdlpi.cpp; sourceTree = "<group>"; };
+		C5F464DE1D0A2946007DC3B6 /* modrandom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = modrandom.cpp; sourceTree = "<group>"; };
+		C5F464E11D0A2BF1007DC3B6 /* RaspberryPi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RaspberryPi.cpp; path = raspberrypi/RaspberryPi.cpp; sourceTree = "<group>"; };
+		C5F464E51D0A31B9007DC3B6 /* raspi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = raspi.h; sourceTree = "<group>"; };
+		C5F464E61D0A354A007DC3B6 /* raspi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = raspi.cpp; path = raspberrypi/raspi.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,6 +387,7 @@
 		C58BCE931CFB067F00D6681A = {
 			isa = PBXGroup;
 			children = (
+				C58BCEA61CFB06EC00D6681A /* SDL.xcodeproj */,
 				C58BD0B21CFB12FC00D6681A /* CoreFoundation.framework */,
 				C58BD0B01CFB12F100D6681A /* ForceFeedback.framework */,
 				C58BD0AE1CFB12EC00D6681A /* CoreVideo.framework */,
@@ -379,13 +396,11 @@
 				C58BD0A91CFB12E000D6681A /* CoreAudio.framework */,
 				C58BD0A61CFB12D300D6681A /* IOKit.framework */,
 				C58BD0A41CFB12BF00D6681A /* Cocoa.framework */,
+				C58BCEB51CFB072400D6681A /* build */,
 				C58BD0601CFB074600D6681A /* inc */,
 				C58BCEB71CFB073500D6681A /* source */,
-				C58BCEB51CFB072400D6681A /* build */,
-				C58BCEA61CFB06EC00D6681A /* SDL.xcodeproj */,
 				C58BCE9E1CFB067F00D6681A /* micropython-sdl */,
 				C58BCE9D1CFB067F00D6681A /* Products */,
-				C559E42B1CFE22780005089E /* main.c */,
 			);
 			sourceTree = "<group>";
 		};
@@ -433,6 +448,8 @@
 		C58BCEB71CFB073500D6681A /* source */ = {
 			isa = PBXGroup;
 			children = (
+				C5F464E01D0A2BE6007DC3B6 /* raspberrypi */,
+				C5F464BE1D0A1DCF007DC3B6 /* _microbit_ */,
 				C58BCEB81CFB073500D6681A /* lib */,
 				C58BCEC21CFB073500D6681A /* py */,
 				C58BCF851CFB073500D6681A /* sdlpi */,
@@ -566,6 +583,10 @@
 		C58BCF851CFB073500D6681A /* sdlpi */ = {
 			isa = PBXGroup;
 			children = (
+				C5F464DE1D0A2946007DC3B6 /* modrandom.cpp */,
+				C5F464DC1D0A2940007DC3B6 /* modsdlpi.cpp */,
+				C5F464DA1D0A27EF007DC3B6 /* modthis.cpp */,
+				C5F464D71D0A24D9007DC3B6 /* help.c */,
 				C58BCF861CFB073500D6681A /* a_main.c */,
 				C58BCF8A1CFB073500D6681A /* mphalport.cpp */,
 				C566829C1D01B75500470B26 /* font7.c */,
@@ -576,6 +597,7 @@
 		C58BD0601CFB074600D6681A /* inc */ = {
 			isa = PBXGroup;
 			children = (
+				C5F464D51D0A233E007DC3B6 /* raspberrypi */,
 				C58BD0611CFB074600D6681A /* genhdr */,
 				C58BD0641CFB074600D6681A /* lib */,
 				C58BD06B1CFB074600D6681A /* py */,
@@ -670,12 +692,40 @@
 		C58BD09C1CFB074600D6681A /* sdlpi */ = {
 			isa = PBXGroup;
 			children = (
+				C5F464D41D0A220A007DC3B6 /* modsdlpi.h */,
 				C58BD09D1CFB074600D6681A /* MicroBitCustomConfig.h */,
 				C58BD09E1CFB074600D6681A /* mpconfigport.h */,
 				C58BD09F1CFB074600D6681A /* mphalport.h */,
 				C58BD0A01CFB074600D6681A /* qstrdefsport.h */,
 			);
 			path = sdlpi;
+			sourceTree = "<group>";
+		};
+		C5F464BE1D0A1DCF007DC3B6 /* _microbit_ */ = {
+			isa = PBXGroup;
+			children = (
+				C5F464C51D0A1ED7007DC3B6 /* mprun.c */,
+				C5F464C61D0A1ED7007DC3B6 /* main.cpp */,
+			);
+			name = _microbit_;
+			sourceTree = "<group>";
+		};
+		C5F464D51D0A233E007DC3B6 /* raspberrypi */ = {
+			isa = PBXGroup;
+			children = (
+				C5F464D61D0A235C007DC3B6 /* RaspberryPi.h */,
+				C5F464E51D0A31B9007DC3B6 /* raspi.h */,
+			);
+			name = raspberrypi;
+			sourceTree = "<group>";
+		};
+		C5F464E01D0A2BE6007DC3B6 /* raspberrypi */ = {
+			isa = PBXGroup;
+			children = (
+				C5F464E11D0A2BF1007DC3B6 /* RaspberryPi.cpp */,
+				C5F464E61D0A354A007DC3B6 /* raspi.cpp */,
+			);
+			name = raspberrypi;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -774,6 +824,7 @@
 				C58BD03E1CFB073500D6681A /* qstr.c in Sources */,
 				C58BD04A1CFB073500D6681A /* smallint.c in Sources */,
 				C58BCFBC1CFB073500D6681A /* lexerstr.c in Sources */,
+				C5F464DF1D0A2946007DC3B6 /* modrandom.cpp in Sources */,
 				C58BD03A1CFB073500D6681A /* parsenum.c in Sources */,
 				C58BD01C1CFB073500D6681A /* objpolyiter.c in Sources */,
 				C58BCFD41CFB073500D6681A /* modstruct.c in Sources */,
@@ -794,12 +845,14 @@
 				C58BCFEC1CFB073500D6681A /* objarray.c in Sources */,
 				C58BCFB61CFB073500D6681A /* frozenmod.c in Sources */,
 				C58BCFC81CFB073500D6681A /* modcmath.c in Sources */,
+				C5F464E21D0A2BF1007DC3B6 /* RaspberryPi.cpp in Sources */,
 				C58BCF9A1CFB073500D6681A /* asmthumb.c in Sources */,
 				C58BD02A1CFB073500D6681A /* objstr.c in Sources */,
 				C58BD0061CFB073500D6681A /* objgenerator.c in Sources */,
 				C58BCFB41CFB073500D6681A /* formatfloat.c in Sources */,
 				C58BCFA81CFB073500D6681A /* compile.c in Sources */,
 				C58BD0121CFB073500D6681A /* objmap.c in Sources */,
+				C5F464D91D0A256C007DC3B6 /* help.c in Sources */,
 				C58BCFFA1CFB073500D6681A /* objdict.c in Sources */,
 				C58BD0321CFB073500D6681A /* objtype.c in Sources */,
 				C58BCFA21CFB073500D6681A /* binary.c in Sources */,
@@ -810,6 +863,7 @@
 				C58BCFA61CFB073500D6681A /* builtinimport.c in Sources */,
 				C58BD0001CFB073500D6681A /* objfilter.c in Sources */,
 				C58BD0581CFB073500D6681A /* a_main.c in Sources */,
+				C5F464DD1D0A2940007DC3B6 /* modsdlpi.cpp in Sources */,
 				C58BCFD61CFB073500D6681A /* modsys.c in Sources */,
 				C58BD0261CFB073500D6681A /* objsingleton.c in Sources */,
 				C58BCFDE1CFB073500D6681A /* nativeglue.c in Sources */,
@@ -838,6 +892,8 @@
 				C58BCFF21CFB073500D6681A /* objboundmeth.c in Sources */,
 				C58BCF8E1CFB073500D6681A /* iters.c in Sources */,
 				C58BD01E1CFB073500D6681A /* objproperty.c in Sources */,
+				C5F464E71D0A354A007DC3B6 /* raspi.cpp in Sources */,
+				C5F464DB1D0A27EF007DC3B6 /* modthis.cpp in Sources */,
 				C58BCF9E1CFB073500D6681A /* asmx86.c in Sources */,
 				C58BCFB01CFB073500D6681A /* emitinlinethumb.c in Sources */,
 				C58BCFEE1CFB073500D6681A /* objattrtuple.c in Sources */,
@@ -977,6 +1033,7 @@
 					../../micropython/inc/sdlpi,
 					"../SDL2-2.0.4/include",
 					../../micropython,
+					../../micropython/inc/raspberrypi,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -993,6 +1050,7 @@
 					../../micropython/inc/sdlpi,
 					"../SDL2-2.0.4/include",
 					../../micropython,
+					../../micropython/inc/raspberrypi,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

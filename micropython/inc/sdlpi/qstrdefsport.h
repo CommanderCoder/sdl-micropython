@@ -4,6 +4,7 @@ Q(help)
 Q(collections)
 Q(struct)
 
+Q(sdlpi)
 Q(microbit)
 Q(reset)
 Q(sleep)
