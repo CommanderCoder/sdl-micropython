@@ -31,3 +31,9 @@
 # Debug files
 *.dSYM/
 *.su
+.deps/
+*.img
+*.map
+build/
+refs/
+qstrdefs.generated.h
