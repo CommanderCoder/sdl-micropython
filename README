@@ -1,3 +1,24 @@
+Raspberry Pi Baremetal Micropython
+
+A messy start to adding Micropython to the Raspberry Pi SDL project.
+
+Included is a version of SDL & Xcode project for testing on Mac. Later, a PC version should be pretty easy to set up too.
+
+Micropython directly access the REPL for the interpreter whereas it ought to use something like 'readline'.
+
+This only works on Version 1 Raspberry Pis and Pi Zeros.
+
+It doesn't work with every USB keyboard either.
+
+   micropython - SDL-based micropython image
+
+
+----
+
+
+
+
+
 Raspberry Pi Baremetal
 
 This a code repository for bare-metal Raspberry Pi libraries and applications
